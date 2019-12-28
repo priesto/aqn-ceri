@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "" > co2
-python /home/pi/Desktop/i2c.py
+echo "" > /home/pi/aqn-ceri/i2c/result
+python /home/pi/aqn-ceri/i2c/i2c.py

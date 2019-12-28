@@ -10,6 +10,11 @@ is_root_user() {
 	return 0
 }
 
+if [[ $(pwd) != '/home/pi/aqn-ceri' ]]; then
+	echo "Please put the aqn-ceri directory on the home directory of pi user"
+	exit 1
+fi
+
 if ! is_root_user; then
 	echo "ERROR: You must be the root user. Exiting..." 2>&1
 	echo  2>&1
@@ -21,7 +26,7 @@ cat << __EOFL__ > /etc/systemd/system/i2c.service
 Description=Read values of CO2 
 
 [Service]
-ExecStart= /bin/bash -c /home/pi/Desktop/i2c-launch.sh
+ExecStart= /bin/bash -c /home/pi/aqn-ceri/i2c/i2c-launch.sh
 
 [Install]
 WantedBy=multi-user.target
@@ -31,4 +36,4 @@ __EOFL__
 systemctl daemon-reload
 systemctl start i2c.service
 
-echo '*/1 * * * * /bin/bash /home/pi/Desktop/aqn-ceri/dht/launch-dht.sh && python /home/pi/Desktop/aqn-ceri/recup.py' >> /var/spool/cron/crontabs/pi
+echo '*/1 * * * * /bin/bash /home/pi/aqn-ceri/dht/launch-dht.sh && python /home/pi/aqn-ceri/recup.py' >> /var/spool/cron/crontabs/pi
