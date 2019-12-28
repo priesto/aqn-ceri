@@ -36,6 +36,5 @@ s1.flushInput()
 
 s1.write(json.dumps(info))
 
-
 time.sleep(5)
 

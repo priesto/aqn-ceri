@@ -1,13 +1,15 @@
 import smbus
 import time
 
+time.sleep(300)
+
 bus = smbus.SMBus(1)
 
-data = bus.read_i2c_block_data(0x5a, 0)
 
+data = bus.read_i2c_block_data(0x5a, 0)
 prediction = data[0] * 256 + data[1]
-time.sleep(10)
 result = ''
+
 while 1:
 	# 450 - 2000
 	data = bus.read_i2c_block_data(0x5a, 0)
