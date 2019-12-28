@@ -5,9 +5,8 @@ import serial
 info = {}
 
 try:
-	with open('/home/pi/Desktop/co2','r') as f:
+	with open('/home/pi/Desktop/aqn-ceri/i2c/result','r') as f:
 		txt = f.read().split(',')
-		print(txt)
 		info['co2'] = txt[0]
 		info['cov'] = txt[1].split('\n')[0]
 except ValueError:
@@ -15,7 +14,7 @@ except ValueError:
 	raise
 
 try:
-	with open('/home/pi/Desktop/dht/dht_log.txt','r') as f:
+	with open('/home/pi/Desktop/aqn-ceri/dht/result','r') as f:
 		txt = f.read().split(',')
 		info['temp'] = txt[0]
 		info['humid'] = txt[1].split('\n')[0]
@@ -24,7 +23,7 @@ except ValueError:
 	raise
 
 try:
-	with open('/home/pi/Desktop/result','w') as f:
+	with open('/home/pi/Desktop/aqn-ceri/result','w') as f:
 		f.write(json.dumps(info))
 except ValueError:
 	print('Error open file !')
