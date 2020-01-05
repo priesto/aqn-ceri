@@ -6,7 +6,7 @@ import os
 info = {}
 
 try:
-	with open('/home/pi/aqn-ceri/dht/result','r') as f:
+	with open('/home/pi/aqn-ceri/i2c/result','r') as f:
 		txt = f.read().split(',')
 		info['co2'] = txt[0]
 		info['cov'] = txt[1].split('\n')[0]
@@ -15,7 +15,7 @@ except ValueError:
 	raise
 
 try:
-	with open('/home/pi/aqn-ceri/i2c/result','r') as f:
+	with open('/home/pi/aqn-ceri/dht/result','r') as f:
 		txt = f.read().split(',')
 		info['temp'] = txt[0]
 		info['humid'] = txt[1].split('\n')[0]
